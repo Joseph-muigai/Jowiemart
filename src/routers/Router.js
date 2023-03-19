@@ -6,9 +6,10 @@ import ProductDetails from '../pages/ProductDetails'
 import Checkout from '../pages/Checkout'
 import Login from '../pages/Login'
 import  Signup from '../pages/Signup'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes,Navigate } from 'react-router-dom'
 const Router = () => {
   return <Routes>
+    <Route path="/" element={<Navigate to="/home" />} />
     <Route path="/" element={<Home />} />
     <Route path="/shop" element={<Shop />} />
     <Route path="/cart" element={<Cart />} />
