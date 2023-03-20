@@ -47,6 +47,27 @@
     cursor: pointer;
     color: var(--primary-color);
 }
+.cart__icon, .fav__icon{
+    position: relative;
+}
+.badge{
+    position: absolute;
+    top: 25%;
+    right: -8px;
+    width: 15px;
+    height: 15px;
+    content: "";
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .nav__icons span img{
     width: 30px;
     height: 30px;
@@ -56,4 +77,7 @@
     display: none;
     font-size: 1.3rem;
     color: var(--primary-color);
+}
+.nav__active{
+    font-weight: 700 !important;
 }

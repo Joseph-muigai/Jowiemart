@@ -1,0 +1,40 @@
+.hero__section{
+    background: var(--hero-bg);
+}
+.hero__content h2{
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 20px 0;
+}
+.hero__content p{
+    color: var(--primary-color);
+    line-height: 28px;
+
+}
+.hero__content p :nth-child(1){
+    font-size: 1.5rem;
+    font-weight: 500;
+
+}
+.buy__btn{
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+.buy__btn:hover{
+    background: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
+}
+.hero__content{
+    padding-top: 45px;
+}
