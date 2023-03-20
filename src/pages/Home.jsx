@@ -5,6 +5,7 @@ import { Col, Container, Row } from 'reactstrap'
 import Helmet from '../components/Helmet/Helmet'
 import heroImg from '../assets/images/hero-img.png'
 import '../styles/home.css'
+import Services from '../components/services/Services'
 const Home = () => {
   const year = new Date().getFullYear()
   return<Helmet title={"Home"}>
@@ -28,6 +29,7 @@ const Home = () => {
         </Row>
       </Container>
     </section>
+    <Services />
   </Helmet>
 }
 
