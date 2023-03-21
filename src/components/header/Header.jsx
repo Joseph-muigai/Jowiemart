@@ -22,6 +22,7 @@ import {motion} from 'framer-motion'
  ]
 const Header = () => {
   const headerRef = useRef(null)
+  const menuRef = useRef(null)
   const stickyHeaderfunc =()=>{
     window.addEventListener('scroll',()=>{
       if(document.body.scrollTop > 80|| document.documentElement.scrollTop>80){
@@ -32,10 +33,12 @@ const Header = () => {
       }
     })
   }
+  
   useEffect(()=>{
     stickyHeaderfunc()
     return ()=>window.removeEventListener("scroll",stickyHeaderfunc)
   })
+  const menuToggle =()=> menuRef.current.classList.toggle('active__menu')
   return (
     <header className="header" ref={headerRef}>
       <Container>
@@ -49,7 +52,7 @@ const Header = () => {
             </div>
             </div>
           
-          <div className="navigation">
+          <div className="navigation" ref={menuRef} onClick ={menuToggle} >
             <ul className="menu">
               {
                 nav__link.map((item, index)=>(
@@ -74,9 +77,9 @@ const Header = () => {
             <span>
               < motion.img whileTap ={{scale:1.2}} img src={user_icon} alt="user_icon" />
             </span>
-          </div>
           <div className="mobile__menu">
-            <span ><i class="ri-menu-line"></i></span>
+            <span onClick ={menuToggle}><i class="ri-menu-line"></i></span>
+          </div>
           </div>
         </div>
         </Row>

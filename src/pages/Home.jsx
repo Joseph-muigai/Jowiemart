@@ -78,7 +78,7 @@ const Home = () => {
     <section className="timer__count mb-5">
       <Container>
         <Row>
-          <Col lg="6" md ="6">
+          <Col lg="6" md ="12" className='count__down-col'>
             <div className="clock__top-content">
             <h2 className="text-white fs-6 mb-2">Hurry up! Limited time offer</h2>
             <h3 className="text-white fs-5 mb-2">Quality Armchair</h3>
@@ -86,13 +86,13 @@ const Home = () => {
             <Clock />
             < motion.button whileTap={{scale:1.2}} className="buy__btn store__btn"><Link to= '/shop'>Visit Store</Link></motion.button>
           </Col>
-          <Col lg="6" md ="6" className='text-end'>
-            <img src={counterImg} alt="counter image" />
+          <Col lg="6" md ="12" className='text-end counter__img'>
+            <img src={counterImg} alt="counter" />
           </Col>
         </Row>
       </Container>
     </section>
-    <div className="new__arrivals mb-5">
+    <section className="new__arrivals mb-5">
       <Container>
         <Row>
           <Col lg="12" className='text-center'>
@@ -104,7 +104,7 @@ const Home = () => {
             <ProductsList data ={wirelessProducts}/>
         </Row>
       </Container>
-    </div>
+    </section>
 
     <section className="popular__category">
       <Container>
