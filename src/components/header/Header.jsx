@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './header.css'
 import logo from '../../assets/images/eco-logo.png'
 import user_icon from '../../assets/images/user-icon.png'
 import {Container,Row} from 'reactstrap'
 import { NavLink } from 'react-router-dom'
 import {motion} from 'framer-motion'
+
  const nav__link = [
   {
     path:"/home",
@@ -20,8 +21,23 @@ import {motion} from 'framer-motion'
   },
  ]
 const Header = () => {
+  const headerRef = useRef(null)
+  const stickyHeaderfunc =()=>{
+    window.addEventListener('scroll',()=>{
+      if(document.body.scrollTop > 80|| document.documentElement.scrollTop>80){
+        headerRef.current.classList.add('sticky__header')
+      }
+      else{
+        headerRef.current.classList.remove('sticky__header')
+      }
+    })
+  }
+  useEffect(()=>{
+    stickyHeaderfunc()
+    return ()=>window.removeEventListener("scroll",stickyHeaderfunc)
+  })
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav__wrapper">
