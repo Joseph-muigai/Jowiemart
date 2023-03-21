@@ -9,7 +9,7 @@ import Services from '../components/services/Services'
 import ProductsList from '../components/Ui/ProductsList'
 import products from '../assets/data/products'
 import counterImg from '../assets/images/counter-timer-img.png'
-
+import Clock from '../components/Ui/Clock'
 const Home = () => {
   const year = new Date().getFullYear()
 
@@ -66,7 +66,24 @@ const Home = () => {
           </Row>
       </Container>
     </section>
-    
+    <section className="timer__count">
+      <Container>
+        <Row>
+          <Col lg="6" md ="6">
+            <div className="clock__top-content">
+            <h2 className="text-white fs-6 mb-2">Hurry up! Limited time offer</h2>
+            <h3 className="text-white fs-5 mb-2">Quality Armchair</h3>
+            </div>
+            <Clock />
+            < motion.button whileTap={{scale:1.2}} className="buy__btn store__btn"><Link to= '/shop'>Visit Store</Link></motion.button>
+          </Col>
+          <Col lg="6" md ="6" className='text-end'>
+            <img src={counterImg} alt="counter image" />
+          </Col>
+        </Row>
+      </Container>
+    </section>
+
   </Helmet>
 }
 
