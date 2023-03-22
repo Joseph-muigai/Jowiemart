@@ -17,14 +17,14 @@ const Shop = () => {
       setProductsData(filteredProducts)
     }
   }
-  const handleSort = (e) => {
+    
+  const handleSearch = (e) => {
     const value = e.target.value
-    if (value === 'ascending') {
-      const sortedProducts = productsData.sort((a, b) => a.price - b.price)
-      setProductsData(sortedProducts)
-    } else if (value === 'descending') {
-      const sortedProducts = productsData.sort((a, b) => b.price - a.price)
-      setProductsData(sortedProducts)
+    if (value === '') {
+      setProductsData(products)
+    } else {
+      const filteredProducts = products.filter((product) => product.productName.toLowerCase().includes(value.toLowerCase()))
+      setProductsData(filteredProducts)
     }
   }
 
@@ -50,7 +50,7 @@ const Shop = () => {
             </Col>
             <Col lg='3' md="3">
             <div className="filter__widget">
-                <select onChange={handleSort}>
+                <select >
                   <option>Sort By</option>
                   <option value="ascending">Ascending</option>
                   <option value="descending">Descending</option>
@@ -60,7 +60,8 @@ const Shop = () => {
             </Col>
             <Col lg='6' md="6">
               <div className="search__box">
-                <input type="text" placeholder="Search Products" />
+                <input type="text" placeholder="Search Products"
+                onChange={handleSearch} />
                 <span><i class="ri-search-line"></i></span>
               </div>
             </Col>
@@ -72,7 +73,7 @@ const Shop = () => {
         <Container>
           <Row>
             {
-              productsData.length=== 0? <h2 className="section__title">No Products Found</h2> 
+              productsData.length=== 0? <h2 className="section__title text-center">No Products Found</h2> 
               :<ProductsList data={productsData} />
             }
           </Row>
