@@ -16,3 +16,13 @@
     text-transform: uppercase;
     
 }
+@media only screen and(max-width: 768px){
+    .hero__section1{
+       padding: 70px 0;
+       
+    }
+    .hero__section1 h1{
+        font-size: 1.4rem;
+        
+    }
+}

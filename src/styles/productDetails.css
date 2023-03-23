@@ -72,3 +72,12 @@
     font-weight: 600;
     text-align: center;
 }
+@media only screen and (max-width: 768px){
+    .review__form{
+        width: 100%;
+    }
+    .rating__group{
+        column-gap: 1 rem;
+
+    }
+} 
