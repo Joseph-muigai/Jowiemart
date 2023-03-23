@@ -27,6 +27,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 20px;
 
 }
 .buy__btn:hover{

@@ -1,4 +1,4 @@
-.hero__section{
+.hero__section1{
     background: linear-gradient(rgba(0,0,0,0.562), rgba(0,0,0,0.562)), url('../assets/images/hero-img.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@
     justify-content: center;
     padding: 100px 0px;
 }
-.hero__section h1{
+.hero__section1 h1{
     color: #fff;
     font-size: 3rem;
     font-weight: 700;
