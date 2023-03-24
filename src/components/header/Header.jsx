@@ -3,7 +3,7 @@ import './header.css'
 import logo from '../../assets/images/eco-logo.png'
 import user_icon from '../../assets/images/user-icon.png'
 import {Container,Row} from 'reactstrap'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {motion} from 'framer-motion'
 import { useSelector } from 'react-redux'
 
@@ -75,8 +75,11 @@ const Header = () => {
               <span className="badge">1</span>
             </span>
             <span className='cart__icon'>
+              <Link to="/cart">
+
               <i class="ri-shopping-bag-line"></i>
               <span className="badge">{totalQuantity}</span>
+              </Link>
             </span>
             <span>
               < motion.img whileTap ={{scale:1.2}} img src={user_icon} alt="user_icon" />
