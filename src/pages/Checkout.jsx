@@ -10,6 +10,8 @@ import '../styles/checkout.css'
 
 
 const Checkout = () => {
+  const totalQty = useSelector(state=> state.cart.totalQuantity)
+  const totalAmount = useSelector(state=>state.cart.totalAmount)
   return (
     <Helmet title="Checkout">
       <HeroSection title="Checkout" />
@@ -44,18 +46,19 @@ const Checkout = () => {
             </Col>
             <Col lg="4">
               <div className="checkout__cart">
-                <h6>Total Qty : <span>0</span></h6>
-                <h6>Subtotal : <span>$120</span></h6>
-                <h6>Shipping: <span>$10</span></h6>
+                <h6>Total Qty : <span>{totalQty}</span></h6>
+                <h6>Subtotal : <span>${totalAmount}</span></h6>
+                <h6><span>Shipping: <br /> Free Shipping</span>$0 </h6>
                 
                 <h6>Tax : <span>$0</span></h6>
-                <h4>Total : <span>$130</span></h4>
+                <h4>Total : <span>${totalAmount}</span></h4>
               </div>
               <button className="buy__btn auth__btn w-100"> Place an order</button>
             </Col>
           </Row>
         </Container>
-      </section>
+      </section>b 
+      
     </Helmet>
   )
 }
