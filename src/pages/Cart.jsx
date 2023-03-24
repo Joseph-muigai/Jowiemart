@@ -6,9 +6,11 @@ import { Container, Row, Col } from 'reactstrap'
 import { motion } from 'framer-motion'
 import { cartActions } from '../redux/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 const Cart = () => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const totalAmount = useSelector(state=> state.cart.totalAmount)
   return (
     <Helmet title="Cart">
       <HeroSection title="Cart" />
@@ -60,7 +62,22 @@ cartItems.length === 0 ? (
               </table>
              
             </Col>
-            <Col lg="3"></Col>
+            <Col lg="3">
+              <div className="">
+                <h6 className='d-flex align-items-center justify-content-between mb-3'>Subtotal
+                <span className='fs-4 fw-bold'>${totalAmount}</span>
+                </h6>
+              </div>
+              <p className='fs-6 '>Taxes and shipping will be calculated at checkout</p>
+              <div className="">
+                <button className="buy__btn w-100">
+                  <Link to ='/shop'>Continue shopping</Link>
+                </button>
+                <button className="buy__btn w-100 mt-3">
+                  <Link to ='/checkout'>Proceed to Checkout</Link>
+                </button>
+              </div>
+            </Col>
           </Row>
         </Container>
       </section>
