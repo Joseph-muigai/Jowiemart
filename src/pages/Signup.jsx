@@ -6,8 +6,15 @@ import { cartActions } from '../redux/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import HeroSection from '../components/Ui/HeroSection'
-import {createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase.config'
+import {createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { setDoc, doc } from 'firebase/firestore'
+import { auth } from '../firebase.config' 
+import { toast } from 'react-toastify'
+import { storage } from '../firebase.config'
+import { db } from '../firebase.config'
+import '../styles/login.css'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -17,19 +24,63 @@ const Signup = () => {
   const [username, setUsername] = useState('')
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
+ const navigate = useNavigate()
+  const handleSignup = async(e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+      const user = userCredentials.user
 
+      const storageRef = ref(storage, `images/${Date.now() + username}`)
+      const uploadTask = uploadBytesResumable(storageRef, file)
 
+      uploadTask.on((error)=>{
+        toast.error(error.message)
+      },()=>{
+        getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
+          // update user profile
+          await updateProfile(user, {
+            displayName: username,
+            photoURL: downloadURL
+          });
+        
+          // store user data to firestore
+          await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            email: user.email,
+            username: username,
+            photoURL: downloadURL,
+          });
+        })
+      })
+      setLoading(false)
+      toast.success('Account created successfully')
+      navigate('/login')
+    } catch (error) {
+      setLoading(false)
+
+      console.log(error)
+      toast.error('something went wrong')
+      
+    }
+  }
   return (
     <Helmet title="Signup">
     <HeroSection title="Signup" />
-    <section>
+    <section> 
 
       <Container>
         <Row>
-          <Col lg="6" className='m-auto text-center'>
+          {
+            loading? (<Col lg="6" className='m-auto text-center'>
+              <h5 className='fw-bold'>Loading.....</h5>
+             </Col>)
+             :
+             (<Col lg="6" className='m-auto text-center'>
             <h3 className="fw-bold fs-4 mb-4">Signup</h3>
 
-            <Form className='auth__form'>
+            <Form className='auth__form' onSubmit={handleSignup}>
               <FormGroup className='form__group'>
                  <input
                   type="text" 
@@ -39,12 +90,12 @@ const Signup = () => {
                  />
               </FormGroup>
               <FormGroup className='form__group'>
-                 <input
-                  type="email" 
+                <input
+                  type="email"                              
                   placeholder='Enter your email' 
                   value={email}
                   onChange ={(e)=>setEmail(e.target.value)}
-                 />
+                />        
               </FormGroup>
               <FormGroup className='form__group'>
                  <input 
@@ -69,7 +120,8 @@ const Signup = () => {
               <p>Already have an account? <Link to='/login'>login</Link> </p>
             </Form>
 
-          </Col>
+          </Col>)
+         }          
         </Row>
       </Container>
     </section>
