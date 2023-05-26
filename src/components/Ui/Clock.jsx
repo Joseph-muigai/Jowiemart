@@ -8,7 +8,7 @@ const Clock = () => {
      
     let interval;
     const countdown = () => {
-        const countDate = new Date('may 5, 2023 00:00:00').getTime();
+        const countDate = new Date('june 5, 2023 00:00:00').getTime();
         const now = new Date().getTime();
         const gap = countDate - now;
         const second = 1000;
